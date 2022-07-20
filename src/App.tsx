@@ -1,9 +1,9 @@
-import Header from "@/components/Header";
+import Canvas from "./components/Canvas/index";
 
 function App() {
   return (
     <>
-      <Header />
+      <Canvas />
     </>
   );
 }
