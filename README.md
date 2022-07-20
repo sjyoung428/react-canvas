@@ -2,7 +2,7 @@
 
 ## Alias
 
-[참고 링크]("https://dev.to/avxkim/setup-path-aliases-w-react-vite-ts-poa")
+[참고 링크](https://dev.to/avxkim/setup-path-aliases-w-react-vite-ts-poa)
 
 - ## Step 1
 
