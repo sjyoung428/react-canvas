@@ -39,3 +39,13 @@ export default defineConfig({
   "references": [{ "path": "./tsconfig.node.json" }]
 }
 ```
+
+## ToDos
+
+<hr/>
+
+- [ ] 코드 리팩토링하기
+
+- [ ] CSS
+
+- [ ] 추가할 기능 생각해보기
