@@ -1,4 +1,4 @@
-import Canvas from "@/components/Canvas/index";
+import Canvas from "@/pages/Canvas/index";
 
 function App() {
   return (

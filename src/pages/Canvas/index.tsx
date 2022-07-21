@@ -1,9 +1,9 @@
 import { useContextStore } from "@/store/useContextStore";
 import { useRangeStore } from "@/store/useRangeStore";
 import { useEffect, useRef, useState } from "react";
-import ColorInput from "../ColorInput";
-import Colors from "../Colors/indext";
-import Range from "../Range";
+import ColorInput from "../../components/ColorInput";
+import Colors from "../../components/Colors/indext";
+import Range from "../../components/Range";
 import { S } from "./styled";
 
 const Canvas = () => {
