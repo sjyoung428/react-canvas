@@ -1,9 +1,12 @@
-import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
+import { useContextStore } from "@/store/useContextStore";
+import { useRangeStore } from "@/store/useRangeStore";
+import { useEffect, useRef, useState } from "react";
+import Range from "../Range";
 import { S } from "./styled";
 
 const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [context, setContext] = useState<CanvasRenderingContext2D | null>();
+  const { context, setContext } = useContextStore();
   const [isPainting, setIsPainting] = useState(false);
 
   useEffect(() => {
@@ -30,6 +33,7 @@ const Canvas = () => {
       context?.lineTo(event.offsetX, event.offsetY);
       context?.stroke();
     }
+    context?.beginPath();
     context?.moveTo(event.offsetX, event.offsetY);
   };
   const startPainting = () => {
@@ -38,7 +42,12 @@ const Canvas = () => {
   const cancelPainting = () => {
     setIsPainting(false);
   };
-  return <S.Canvas height={500} width={500} ref={canvasRef} />;
+  return (
+    <>
+      <S.Canvas height={500} width={500} ref={canvasRef} />
+      <Range />
+    </>
+  );
 };
 
 export default Canvas;
