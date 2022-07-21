@@ -8,6 +8,7 @@ import ModeButton from "@/components/Button/ModeButton";
 import { useCanvasStore } from "@/store/useCanvasStore";
 import ResetButton from "@/components/Button/ResetButton";
 import EraseButton from "@/components/Button/EraseButton";
+import ImageUpload from "@/components/ImageUpload";
 
 const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -65,6 +66,7 @@ const Canvas = () => {
       <ModeButton />
       <EraseButton />
       <ResetButton />
+      <ImageUpload />
       <Colors />
     </>
   );
