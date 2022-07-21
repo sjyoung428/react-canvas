@@ -1,15 +1,15 @@
 import { useContextStore } from "@/store/useContextStore";
-import { useState } from "react";
+import { useRangeStore } from "@/store/useRangeStore";
 import { S } from "./styled";
 
 const Range = () => {
-  const [value, setValue] = useState(5);
+  const { range, setRange } = useRangeStore();
   const context = useContextStore((state) => state.context);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(Number(event.currentTarget.value));
+    setRange(Number(event.currentTarget.value));
     if (context) {
-      context.lineWidth = value;
+      context.lineWidth = range;
     }
   };
   return (
@@ -18,7 +18,7 @@ const Range = () => {
         type="range"
         min={1}
         max={10}
-        value={value}
+        value={range}
         step={0.1}
         onChange={onChange}
       />

@@ -9,6 +9,7 @@ interface ContextAction {
 
 export const useContextStore = create<ContextState & ContextAction>((set) => ({
   context: null,
+
   setContext: (context: CanvasRenderingContext2D | null) => {
     set(() => ({ context }));
   },
