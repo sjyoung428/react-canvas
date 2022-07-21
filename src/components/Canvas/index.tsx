@@ -2,6 +2,7 @@ import { useContextStore } from "@/store/useContextStore";
 import { useRangeStore } from "@/store/useRangeStore";
 import { useEffect, useRef, useState } from "react";
 import ColorInput from "../ColorInput";
+import Colors from "../Colors/indext";
 import Range from "../Range";
 import { S } from "./styled";
 
@@ -48,6 +49,7 @@ const Canvas = () => {
       <S.Canvas height={500} width={500} ref={canvasRef} />
       <Range />
       <ColorInput />
+      <Colors />
     </>
   );
 };
