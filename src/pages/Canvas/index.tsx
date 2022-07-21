@@ -1,15 +1,17 @@
 import { useContextStore } from "@/store/useContextStore";
-import { useRangeStore } from "@/store/useRangeStore";
 import { useEffect, useRef, useState } from "react";
-import ColorInput from "../../components/ColorInput";
-import Colors from "../../components/Colors/indext";
-import Range from "../../components/Range";
+import ColorInput from "@/components/ColorInput";
+import Colors from "@/components/Colors/indext";
+import Range from "@/components/Range";
 import { S } from "./styled";
+import ModeButton from "@/components/ModeButton";
+import { useCanvasModeStore } from "@/store/useCanvasModeStore";
 
 const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { context, setContext } = useContextStore();
   const [isPainting, setIsPainting] = useState(false);
+  const mode = useCanvasModeStore((state) => state.mode);
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -20,15 +22,17 @@ const Canvas = () => {
       canvas.addEventListener("mousedown", startPainting);
       canvas.addEventListener("mouseup", cancelPainting);
       canvas.addEventListener("mouseleave", cancelPainting);
+      canvas.addEventListener("click", onClickMode);
 
       return () => {
         canvas.removeEventListener("mousemove", onMove);
         canvas.removeEventListener("mousedown", startPainting);
         canvas.removeEventListener("mouseup", cancelPainting);
         canvas.removeEventListener("mouseleave", cancelPainting);
+        canvas.removeEventListener("click", onClickMode);
       };
     }
-  }, [context, isPainting]);
+  }, [context, isPainting, mode]);
 
   const onMove = (event: MouseEvent) => {
     if (isPainting) {
@@ -44,11 +48,19 @@ const Canvas = () => {
   const cancelPainting = () => {
     setIsPainting(false);
   };
+
+  const onClickMode = () => {
+    if (mode === "Stroke Mode") {
+      context?.fillRect(0, 0, 500, 500);
+    }
+  };
+
   return (
     <>
       <S.Canvas height={500} width={500} ref={canvasRef} />
       <Range />
       <ColorInput />
+      <ModeButton />
       <Colors />
     </>
   );

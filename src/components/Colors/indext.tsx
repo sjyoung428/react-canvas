@@ -23,13 +23,13 @@ const Colors = () => {
   useEffect(() => {
     if (context) {
       context.strokeStyle = color;
+      context.fillStyle = color;
     }
   }, [color]);
 
   const onClick = (event: React.MouseEvent<HTMLSpanElement>) => {
     setColor(event.currentTarget.id);
   };
-  console.log(color);
   return (
     <S.CircleContainer>
       {colors.map((color) => (

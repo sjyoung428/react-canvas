@@ -9,9 +9,9 @@ const ColorInput = () => {
     setColor(event.currentTarget.value);
     if (context) {
       context.strokeStyle = color;
+      context.fillStyle = color;
     }
   };
-  console.log(color);
   return (
     <>
       <S.ColorInput type="color" onChange={onChange} />
