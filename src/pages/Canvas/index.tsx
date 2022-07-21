@@ -12,14 +12,17 @@ import ImageUpload from "@/components/ImageUpload";
 import TextInput from "@/components/TextInput";
 import { useInputStore } from "@/store/useInputStore";
 import { useRangeStore } from "@/store/useRangeStore";
+import SaveButton from "@/components/Button/SaveButton";
 
 const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const aRef = useRef<HTMLAnchorElement>(null);
   const { context, setContext } = useContextStore();
   const [isPainting, setIsPainting] = useState(false);
   const { mode, height, width } = useCanvasStore();
   const value = useInputStore((state) => state.value);
   const range = useRangeStore((state) => state.range);
+  const [downloadUrl, setDownloadUrl] = useState("");
 
   useEffect(() => {
     if (!context) return;
@@ -45,6 +48,7 @@ const Canvas = () => {
         canvas.removeEventListener("mouseup", cancelPainting);
         canvas.removeEventListener("mouseleave", cancelPainting);
         canvas.removeEventListener("click", onClickMode);
+        canvas.removeEventListener("dblclick", onDoubleClick);
       };
     }
   }, [context, isPainting, mode]);
@@ -80,6 +84,14 @@ const Canvas = () => {
     }
   };
 
+  const onSaveClick = () => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      setDownloadUrl(canvas.toDataURL());
+      aRef.current?.click();
+    }
+  };
+
   return (
     <>
       <S.Canvas height={height} width={width} ref={canvasRef} />
@@ -91,6 +103,8 @@ const Canvas = () => {
       <ImageUpload />
       <TextInput />
       <Colors />
+      <SaveButton onClick={onSaveClick} />
+      <a ref={aRef} href={downloadUrl} download="myCanvas.png"></a>
     </>
   );
 };
