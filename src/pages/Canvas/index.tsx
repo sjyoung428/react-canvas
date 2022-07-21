@@ -4,14 +4,15 @@ import ColorInput from "@/components/ColorInput";
 import Colors from "@/components/Colors/indext";
 import Range from "@/components/Range";
 import { S } from "./styled";
-import ModeButton from "@/components/ModeButton";
-import { useCanvasModeStore } from "@/store/useCanvasModeStore";
+import ModeButton from "@/components/Button/ModeButton";
+import { useCanvasStore } from "@/store/useCanvasStore";
+import ResetButton from "@/components/Button/ResetButton";
 
 const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { context, setContext } = useContextStore();
   const [isPainting, setIsPainting] = useState(false);
-  const mode = useCanvasModeStore((state) => state.mode);
+  const { mode, height, width } = useCanvasStore();
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -51,16 +52,17 @@ const Canvas = () => {
 
   const onClickMode = () => {
     if (mode === "Stroke Mode") {
-      context?.fillRect(0, 0, 500, 500);
+      context?.fillRect(0, 0, width, height);
     }
   };
 
   return (
     <>
-      <S.Canvas height={500} width={500} ref={canvasRef} />
+      <S.Canvas height={height} width={width} ref={canvasRef} />
       <Range />
       <ColorInput />
       <ModeButton />
+      <ResetButton />
       <Colors />
     </>
   );
