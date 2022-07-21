@@ -1,10 +1,11 @@
 import { useContextStore } from "@/store/useContextStore";
-import { useRangeStore } from "@/store/useRangeStore";
+import { useState } from "react";
 import { S } from "./styled";
 
 const Range = () => {
-  const { value, setValue } = useRangeStore();
+  const [value, setValue] = useState(5);
   const context = useContextStore((state) => state.context);
+
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(Number(event.currentTarget.value));
     if (context) {

@@ -8,18 +8,16 @@ interface CanvasState {
   width: 500;
 }
 interface CanvasAction {
-  setMode: () => void;
+  setMode: (mode: ModeType) => void;
 }
 
-export const useCanvasStore = create<CanvasState & CanvasAction>(
-  (set, get) => ({
-    mode: "Fill Mode",
-    height: 500,
-    width: 500,
+export const useCanvasStore = create<CanvasState & CanvasAction>((set) => ({
+  mode: "Fill Mode",
+  height: 500,
+  width: 500,
 
-    setMode: () =>
-      set(() => ({
-        mode: get().mode === "Fill Mode" ? "Stroke Mode" : "Fill Mode",
-      })),
-  })
-);
+  setMode: (mode: ModeType) =>
+    set(() => ({
+      mode,
+    })),
+}));

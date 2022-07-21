@@ -7,6 +7,7 @@ import { S } from "./styled";
 import ModeButton from "@/components/Button/ModeButton";
 import { useCanvasStore } from "@/store/useCanvasStore";
 import ResetButton from "@/components/Button/ResetButton";
+import EraseButton from "@/components/Button/EraseButton";
 
 const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -62,6 +63,7 @@ const Canvas = () => {
       <Range />
       <ColorInput />
       <ModeButton />
+      <EraseButton />
       <ResetButton />
       <Colors />
     </>

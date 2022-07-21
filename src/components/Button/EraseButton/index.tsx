@@ -2,20 +2,20 @@ import { useCanvasStore } from "@/store/useCanvasStore";
 import { useContextStore } from "@/store/useContextStore";
 import { S } from "./styled";
 
-const ResetButton = () => {
+const EraseButton = () => {
   const context = useContextStore((state) => state.context);
-  const { width, height } = useCanvasStore();
+  const setMode = useCanvasStore((state) => state.setMode);
   const onClick = () => {
     if (context) {
-      context.fillStyle = "white";
-      context.fillRect(0, 0, width, height);
+      setMode("Fill Mode");
+      context.strokeStyle = "white";
     }
   };
   return (
     <>
-      <S.ResetButton onClick={onClick}>RESET</S.ResetButton>
+      <S.EraseButton onClick={onClick}>지우개</S.EraseButton>
     </>
   );
 };
 
-export default ResetButton;
+export default EraseButton;

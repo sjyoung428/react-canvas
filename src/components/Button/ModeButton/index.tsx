@@ -6,7 +6,7 @@ type ModeType = "Fill Mode" | "Stroke Mode";
 const ModeButton = () => {
   const { mode, setMode } = useCanvasStore();
   const onClick = () => {
-    setMode();
+    setMode(mode === "Fill Mode" ? "Stroke Mode" : "Fill Mode");
   };
   return (
     <>
